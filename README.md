@@ -1,2 +1,2 @@
-# Início da jornada no mundo da Ciência de Dados.
+# Jornada no mundo da Ciência de Dados.
 -> Olá mundo!

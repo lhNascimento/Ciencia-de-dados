@@ -12,9 +12,9 @@ lista_idades = [32, 22, 25, 29, 38]
 
 dados = list(zip(lista_nomes, lista_idades, lista_emails )) # cria uma lista de tuplas # ('howard', 32, 'risus.varius@dfictumPhasellusin.ca') 
 
-db = pd.DataFrame(data = dados, index = lista_cpfs, columns=['Nome', 'idade', 'E-mail'])
+df_dados= pd.DataFrame(data = dados, index = lista_cpfs, columns=['Nome', 'idades', 'E-mail'])
 
-print(db)
+print(df_dados)
 
 # CONSTRUTOR DATAFRAME COM DICIONÁRIO
 
@@ -32,22 +32,22 @@ print('\n', df_dados_dic)
 # EXTRAINDO INFORMAÇÕES DE UM DATAFRAME
 
 print('\nInformações do DataFrame:\n')
-print(db.info())  # Apresenta informações sobre a estrutura do DF
+print(df_dados.info())  # Apresenta informações sobre a estrutura do DF
 
-print('\nQuantidade de linhas e colunas = ', db.shape)  # Retorna uma tupla com o número de linhas e colunas
-print('\nTipo de dados:\n', db.dtypes)  # Retorna o tipo de dados, para cada coluna, se for misto será object
+print('\nQuantidade de linhas e colunas = ', df_dados.shape)  # Retorna uma tupla com o número de linhas e colunas
+print('\nTipo de dados:\n', df_dados.dtypes)  # Retorna o tipo de dados, para cada coluna, se for misto será object
 
-print('\nQual o menor valor de cada coluna?\n', db.min())  # Extrai o menor de cada coluna
-print('\nQual o maior valor?\n', db.max())  # Extrai o valor máximo e cada coluna
+print('\nQual o menor valor de cada coluna?\n', df_dados.min())  # Extrai o menor de cada coluna
+print('\nQual o maior valor?\n', df_dados.max())  # Extrai o valor máximo e cada coluna
 
 # Calculando a média apenas das colunas numéricas
-colunas_numericas = db.select_dtypes(include=['int64', 'float64']).columns
-print('\nQual a média aritmética?\n', db[colunas_numericas].mean())
+colunas_numericas = df_dados.select_dtypes(include=['int64', 'float64']).columns
+print('\nQual a média aritmética?\n', df_dados[colunas_numericas].mean())
 
-print('\nQual o desvio padrão?\n', db[colunas_numericas].std())  # Extrai o desvio padrão de cada coluna numérica
-print('\nQual a mediana?\n', db[colunas_numericas].median())  # Extrai a mediana de cada coluna numérica
+print('\nQual o desvio padrão?\n', df_dados[colunas_numericas].std())  # Extrai o desvio padrão de cada coluna numérica
+print('\nQual a mediana?\n', df_dados[colunas_numericas].median())  # Extrai a mediana de cada coluna numérica
 
-print('\nResumo:\n', db.describe())  # Exibe um resumo
+print('\nResumo:\n', df_dados.describe())  # Exibe um resumo
 
 print('\nOs 5 primeiros registros do DataFrame:')
-print(db.head())  # Exibe os 5 primeiros registros do DataFrame
+print(df_dados.head())  # Exibe os 5 primeiros registros do DataFrame

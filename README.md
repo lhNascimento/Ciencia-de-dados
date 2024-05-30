@@ -1,2 +1,2 @@
-# Jornada no mundo da Ciência de Dados.
+# Jornada no mundo da Tecnologia.
 -> Olá mundo!

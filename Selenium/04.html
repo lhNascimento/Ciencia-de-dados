@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Login</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+        }
+        .numeric-keyboard {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .numeric-keyboard button {
+            padding: 20px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #e0e0e0;
+        }
+        #password {
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 18px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        #login-message {
+            display: none;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+    <div class="numeric-keyboard" id="numeric-keyboard">
+        <!-- Os botões do teclado numérico serão gerados dinamicamente aqui -->
+    </div>
+    <input type="text" id="password" name="password" readonly>
+    <button id="login-button">Login</button>
+    <p id="login-message">Senha correta! Acesso permitido.</p>
+</div>
+
+<script>
+    const passwordField = document.getElementById('password');
+    const loginButton = document.getElementById('login-button');
+    const loginMessage = document.getElementById('login-message');
+    const correctPassword = '1298';
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    function generateNumericKeyboard() {
+        const numbers = Array.from({length: 10}, (_, i) => i);
+        shuffle(numbers);
+
+        const keyboardDiv = document.getElementById('numeric-keyboard');
+        keyboardDiv.innerHTML = '';
+        numbers.forEach(number => {
+            const button = document.createElement('button');
+            button.textContent = number;
+            button.setAttribute('data-value', number);
+            button.setAttribute('valortecla', number); // Adiciona o atributo valortecla
+            button.addEventListener('click', () => {
+                if (passwordField.value.length < 4) {
+                    passwordField.value += button.getAttribute('data-value');
+                }
+            });
+            keyboardDiv.appendChild(button);
+        });
+    }
+
+    loginButton.addEventListener('click', () => {
+        if (passwordField.value === correctPassword) {
+            loginMessage.style.display = 'block';
+        } else {
+            alert('Senha incorreta!');
+            passwordField.value = '';
+        }
+    });
+
+    // Chama a função para gerar o teclado numérico embaralhado ao carregar a página
+    generateNumericKeyboard();
+</script>
+
+</body>
+</html>

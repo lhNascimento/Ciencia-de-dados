@@ -1,0 +1,30 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+
+# Inicializa o navegador Chrome
+navegador = webdriver.Chrome()
+
+# Tempo para acessar a pagina google
+time.sleep(3)
+
+# Acessa página do google
+navegador.get("https://www.sicredi.com.br/home/")
+
+# Clicar permitir cookies
+navegador.find_element(By.XPATH, '//*[@id="banner-container"]/section/div/button[2]/span').click()
+
+# LOGIN
+    # Click em acessar minha conta
+navegador.find_element(By.XPATH, '//*[@id="header-novo-container"]/div/div[2]/div/div/div[3]/div/div/button').click()
+cooperativa = navegador.find_element(By.XPATH, '//*[@id="input-coop"]')
+    # Entra no campo da cooperativa
+cooperativa.click()
+    # Preenche campo
+cooperativa.send_keys('0523')
+
+
+# Mantém o script em execução indefinidamente
+while True:
+    time.sleep(1000)
+
